@@ -110,7 +110,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   /*
   ========================================
-  КОНТРОЛЛЕРЫ ДЛЯ ПОЛЕЙ ВВОДА
+  КОНТРОЛЛЕРЫ ДЛЯ ПОЛЕЙ ВВОДА считывает что ввёл пользователь
   ========================================
   */
 
@@ -119,10 +119,11 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController passwordController =
       TextEditingController();
-
+//переменная для текста ошибки
   String errorText = '';
 
   void login() {
+    //берут текст из полей
     final login = loginController.text;
     final password = passwordController.text;
 
@@ -133,12 +134,13 @@ class _LoginPageState extends State<LoginPage> {
     */
 
     for (var user in widget.users) {
-      if (
+      if (//проверка на совпадение
         user.login == login &&
         user.password == password
       ) {
         widget.onLogin(user);
         return;
+        //остановка поиска
       }
     }
 
@@ -298,7 +300,7 @@ class _RegisterPageState
 
     /*
     ========================================
-    ПРОВЕРКА НА ПУСТЫЕ ПОЛЯ
+    ПРОВЕРКА НА ПУСТЫЕ ПОЛЯ при помощи is empty
     ========================================
     */
 
@@ -402,6 +404,7 @@ class _RegisterPageState
     );
   }
 }
+//для знака зодиака
 class ZodiacSign {
   final String name;
   final String emoji;
@@ -410,8 +413,9 @@ class ZodiacSign {
 }
 
 class AstroPage extends StatefulWidget {
+  //пользователь который вошёл
   final User user;
-
+//выход из аккаунта
   final VoidCallback onLogout;
 
   const AstroPage({
